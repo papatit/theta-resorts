@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theta Resorts — Resort Apartments in Amarynthos, Evia</title>
+<meta name="description" content="Theta Development — bright, sea-view resort apartments in Amarynthos, Evia, Greece. Book your Aegean escape.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ BASE ============ */
+:root{
+  --sea:#1B6C8C; --sea-deep:#0E4359; --sky:#BFE3EE; --sand:#F4EDE2; --sand-warm:#E9DCC8;
+  --white:#FDFBF7; --ink:#17323F; --terracotta:#C9744A; --gold:#C2A05A;
+  --serif:'Cormorant Garamond',serif; --sans:'Inter',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;line-height:1.6}
+::selection{background:var(--sea);color:#fff}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1}
+
+/* ============ PRELOADER ============ */
+#loader{position:fixed;inset:0;background:var(--sea-deep);z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .8s var(--ease),visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .theta{font-family:var(--serif);font-size:72px;color:var(--sand);animation:pulse 1.6s ease-in-out infinite}
+#loader .bar{width:120px;height:1px;background:rgba(255,255,255,.2);overflow:hidden}
+#loader .bar i{display:block;height:100%;width:40%;background:var(--sand);animation:slide 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(320%)}}
+
+/* ============ NAV ============ */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:22px 5vw;transition:all .5s var(--ease)}
+nav.scrolled{background:rgba(253,251,247,.88);backdrop-filter:blur(14px);padding:14px 5vw;box-shadow:0 1px 0 rgba(23,50,63,.08)}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#fff;transition:color .5s}
+nav.scrolled .logo{color:var(--ink)}
+.logo .mark{width:40px;height:40px;border:1px solid currentColor;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .6s var(--ease)}
+.logo:hover .mark{transform:rotate(180deg)}
+.logo-text{display:flex;flex-direction:column;line-height:1.15}
+.logo-text small{font-family:var(--sans);font-size:8px;letter-spacing:.24em;text-transform:uppercase;opacity:.75;margin-top:3px;font-weight:400}
+.nav-right{display:flex;align-items:center;gap:36px}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#fff;position:relative;transition:color .5s}
+nav.scrolled .nav-links a{color:var(--ink)}
+.nav-links a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-5px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav-links a:not(.btn):hover::after{transform:scaleX(1);transform-origin:left}
+.btn{padding:12px 28px;border:1px solid currentColor;border-radius:100px;transition:all .4s var(--ease)!important}
+.btn:hover{background:var(--terracotta);border-color:var(--terracotta);color:#fff!important}
+.lang{background:none;border:1px solid rgba(255,255,255,.55);color:#fff;border-radius:100px;padding:9px 16px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;cursor:pointer;transition:all .4s var(--ease)}
+.lang:hover{background:rgba(255,255,255,.15)}
+nav.scrolled .lang{border-color:rgba(23,50,63,.35);color:var(--ink)}
+nav.scrolled .lang:hover{background:var(--sky)}
+.burger{display:none}
+
+/* ============ HERO ============ */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;color:#fff}
+.hero-bg{position:absolute;inset:-12% 0;z-index:-2;background:linear-gradient(160deg,#7FB6CC 0%,#3D89A8 40%,var(--sea-deep) 100%);will-change:transform}
+.hero-bg[data-img]{background-size:cover;background-position:center}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,67,89,.25),rgba(14,67,89,.15) 50%,rgba(14,67,89,.55));z-index:-1}
+.hero .kicker{font-size:12px;letter-spacing:.4em;text-transform:uppercase;margin-bottom:24px;opacity:0;animation:up 1.2s var(--ease) .3s forwards}
+.hero h1{font-size:clamp(46px,8.5vw,120px);font-weight:400}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line span{display:inline-block;transform:translateY(110%);animation:reveal 1.3s var(--ease) forwards}
+.hero h1 .line:nth-child(1) span{animation-delay:.5s}
+.hero h1 .line:nth-child(2) span{animation-delay:.68s;font-style:italic;color:var(--sky)}
+.hero p{max-width:460px;margin:28px auto 0;font-weight:300;font-size:16px;opacity:0;animation:up 1.2s var(--ease) 1s forwards}
+.hero-cta{margin-top:40px;display:flex;gap:16px;justify-content:center;opacity:0;animation:up 1.2s var(--ease) 1.2s forwards}
+.btn-solid{padding:16px 38px;background:var(--white);color:var(--ink);border-radius:100px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:all .4s var(--ease)}
+.btn-solid:hover{background:var(--terracotta);color:#fff;transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.25)}
+.btn-ghost{padding:16px 38px;border:1px solid rgba(255,255,255,.6);color:#fff;border-radius:100px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;transition:all .4s var(--ease)}
+.btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff;transform:translateY(-3px)}
+@keyframes reveal{to{transform:translateY(0)}}
+@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;opacity:0;animation:up 1s var(--ease) 1.8s forwards}
+.scroll-hint i{width:1px;height:44px;background:rgba(255,255,255,.5);position:relative;overflow:hidden}
+.scroll-hint i::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:#fff;animation:drip 1.8s ease-in-out infinite}
+@keyframes drip{to{top:100%}}
+
+/* waves */
+.waves{position:absolute;bottom:-2px;left:0;width:100%;z-index:2;pointer-events:none}
+.waves svg{display:block;width:200%;animation:wave 14s linear infinite}
+@keyframes wave{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS ============ */
+section{padding:110px 5vw}
+.label{font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--terracotta);display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.label::before{content:'';width:44px;height:1px;background:var(--terracotta)}
+h2{font-size:clamp(34px,4.5vw,58px);color:var(--ink)}
+h2 em{font-style:italic;color:var(--sea)}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(44px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+
+/* ============ ABOUT ============ */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center;max-width:1240px;margin:0 auto}
+.about p.lead{font-family:var(--serif);font-size:clamp(20px,2vw,26px);line-height:1.5;color:var(--sea-deep);margin:26px 0 18px}
+.about p{font-weight:300;color:#4a626e}
+.stats{display:flex;gap:48px;margin-top:44px}
+.stat b{font-family:var(--serif);font-size:46px;font-weight:500;color:var(--sea);display:block}
+.stat span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7b8f99}
+.about-img{position:relative}
+.ph{background:linear-gradient(150deg,var(--sky),#8fc3d6 55%,var(--sea));border-radius:2px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ph::after{content:attr(data-label);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.85);border:1px dashed rgba(255,255,255,.6);padding:10px 18px;border-radius:100px}
+.ph.has-img::after{display:none}
+.ph.has-img{background-size:cover;background-position:center}
+.about-img .ph{aspect-ratio:4/5;box-shadow:30px 30px 0 var(--sand-warm)}
+.about-img .float{position:absolute;bottom:-34px;left:-44px;background:var(--white);padding:26px 30px;box-shadow:0 24px 60px rgba(23,50,63,.14);max-width:230px}
+.about-img .float b{font-family:var(--serif);font-size:20px;display:block;margin-bottom:4px}
+.about-img .float span{font-size:12px;color:#7b8f99}
+
+/* ============ RESIDENCES ============ */
+.residences{background:var(--sand)}
+.res-head{display:flex;justify-content:space-between;align-items:flex-end;max-width:1240px;margin:0 auto 56px;gap:30px;flex-wrap:wrap}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1240px;margin:0 auto}
+.card{background:var(--white);border-radius:2px;overflow:hidden;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.card:hover{transform:translateY(-10px);box-shadow:0 34px 70px rgba(23,50,63,.16)}
+.card .ph{aspect-ratio:4/3;transition:transform .8s var(--ease)}
+.card .imgwrap{overflow:hidden}
+.card:hover .imgwrap .ph{transform:scale(1.06)}
+.card-body{padding:28px}
+.card-body h3{font-size:26px;margin-bottom:8px}
+.card-body .meta{display:flex;gap:18px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7b8f99;margin-bottom:14px}
+.card-body p{font-size:14px;font-weight:300;color:#4a626e;margin-bottom:20px}
+.card-link{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--terracotta);display:inline-flex;align-items:center;gap:8px}
+.card-link svg{transition:transform .4s var(--ease)}
+.card-link:hover svg{transform:translateX(6px)}
+
+/* ============ AMENITIES ============ */
+.amen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(23,50,63,.1);max-width:1240px;margin:60px auto 0;border:1px solid rgba(23,50,63,.1)}
+.amen{background:var(--white);padding:44px 30px;transition:background .5s var(--ease)}
+.amen:hover{background:var(--sky)}
+.amen .ico{font-size:30px;margin-bottom:18px;display:inline-block;transition:transform .5s var(--ease)}
+.amen:hover .ico{transform:translateY(-6px) rotate(-8deg)}
+.amen h3{font-size:20px;margin-bottom:8px}
+.amen p{font-size:13px;font-weight:300;color:#4a626e}
+
+/* ============ GALLERY ============ */
+.gallery{background:var(--sea-deep);color:var(--sand)}
+.gallery h2{color:var(--sand)}
+.gallery h2 em{color:var(--sky)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;max-width:1240px;margin:56px auto 0}
+.gal-grid .ph{border-radius:2px;cursor:pointer;transition:transform .5s var(--ease),filter .5s}
+.gal-grid .ph:hover{transform:scale(.975);filter:brightness(1.1)}
+.g1{grid-column:span 2;grid-row:span 2}.g4{grid-row:span 2}.g6{grid-column:span 2}
+
+/* ============ LOCATION ============ */
+.location{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center;max-width:1240px;margin:0 auto}
+.loc-list{margin-top:34px;display:flex;flex-direction:column;gap:0}
+.loc-item{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(23,50,63,.12);font-size:15px;transition:padding .4s var(--ease)}
+.loc-item:hover{padding-left:10px}
+.loc-item b{font-weight:500}
+.loc-item span{font-size:12px;letter-spacing:.1em;color:#7b8f99}
+.map-box{position:relative;aspect-ratio:4/3;border-radius:2px;overflow:hidden;background:linear-gradient(140deg,var(--sky),#a9d3e2)}
+.map-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:30px}
+.map-placeholder .pin{font-size:44px;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.map-placeholder p{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--sea-deep)}
+
+/* ============ BOOKING CTA ============ */
+.book{position:relative;text-align:center;color:#fff;overflow:hidden;padding:150px 5vw}
+.book-bg{position:absolute;inset:-15% 0;background:linear-gradient(160deg,var(--sea) 0%,var(--sea-deep) 100%);z-index:-1;will-change:transform}
+.book-bg[data-img]{background-size:cover;background-position:center}
+.book::before{content:'';position:absolute;inset:0;background:rgba(14,67,89,.55);z-index:-1}
+.book h2{color:#fff;font-size:clamp(38px,5.5vw,72px)}
+.book h2 em{color:var(--sky)}
+.book p{max-width:440px;margin:22px auto 40px;font-weight:300}
+.book .big-theta{position:absolute;font-family:var(--serif);font-size:44vw;color:rgba(255,255,255,.05);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;line-height:1}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#9db2bc;padding:70px 5vw 34px}
+.foot{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px}
+.foot .logo{color:var(--sand);font-size:19px;margin-bottom:16px}
+.foot p{font-size:13px;font-weight:300;max-width:280px}
+.foot h4{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--sand);margin-bottom:18px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.foot ul a{transition:color .3s,padding-left .3s}
+.foot ul a:hover{color:#fff;padding-left:6px}
+.foot-bottom{max-width:1240px;margin:56px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  .about,.location{grid-template-columns:1fr;gap:50px}
+  .res-grid{grid-template-columns:1fr 1fr}
+  .amen-grid{grid-template-columns:1fr 1fr}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:170px}
+  .g1{grid-column:span 2}.g6{grid-column:span 2}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-right{gap:14px}
+  .burger{display:block;color:#fff;background:none;border:none;font-size:26px;cursor:pointer}
+  nav.scrolled .burger{color:var(--ink)}
+  .res-grid{grid-template-columns:1fr}
+  .amen-grid{grid-template-columns:1fr}
+  section{padding:80px 6vw}
+  .stats{gap:28px;flex-wrap:wrap}
+  .about-img .float{left:0;bottom:-28px}
+  .foot{grid-template-columns:1fr}
+  .hero-cta{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="loader"><div class="theta">Θ</div><div class="bar"><i></i></div></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#top"><span class="mark">Θ</span><span class="logo-text">Theta Resorts<small>by Theta Development</small></span></a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#residences" data-i18n="nav_res">Residences</a>
+      <a href="#gallery" data-i18n="nav_gal">Gallery</a>
+      <a href="#location" data-i18n="nav_loc">Location</a>
+      <a class="btn" href="#book" data-i18n="nav_book">Book Now</a>
+    </div>
+    <button class="lang" id="langBtn" aria-label="Switch language">ΕΛ</button>
+    <button class="burger" onclick="document.querySelector('#book').scrollIntoView()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg" id="heroBg" data-slot="hero" data-img style="background-image:url('images/hero.jpg')"></div>
+  <div>
+    <div class="kicker" data-i18n="kicker">Resort Apartments · Amarynthos, Evia</div>
+    <h1>
+      <span class="line"><span data-i18n="h1a">Quiet hills, olive groves,</span></span>
+      <span class="line"><span data-i18n="h1b">and the endless blue</span></span>
+    </h1>
+    <p data-i18n="hero_p">Tucked into the olive groves above the Euboean Gulf — private, peaceful apartments where the only sounds are the cicadas and the sea.</p>
+    <div class="hero-cta">
+      <a class="btn-solid booking-link" href="#book" data-i18n="cta_book">Book Your Stay</a>
+      <a class="btn-ghost" href="#residences" data-i18n="cta_explore">Explore Residences</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span data-i18n="scroll">Scroll</span><i></i></div>
+  <div class="waves">
+    <svg viewBox="0 0 2880 90" preserveAspectRatio="none" style="height:70px">
+      <path d="M0,45 C240,90 480,0 720,45 C960,90 1200,0 1440,45 C1680,90 1920,0 2160,45 C2400,90 2640,0 2880,45 L2880,90 L0,90 Z" fill="#FDFBF7"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about">
+    <div>
+      <div class="label rv" data-i18n="ab_label">The Theta Story</div>
+      <h2 class="rv" data-i18n="ab_h2">Crafted for the <em>art of summer</em></h2>
+      <p class="lead rv d1" data-i18n="ab_lead">Theta Development builds and hosts resort apartments where Greek light, honest materials, and effortless comfort meet.</p>
+      <p class="rv d2" data-i18n="ab_body">Every residence is designed around the rhythm of the Mediterranean day — bright interiors that stay cool at noon, balconies that catch the evening gold, and beds you'll want to stay in until the smell of coffee wins. Whether you're here for a weekend or the whole season, you arrive as a guest and leave as a regular.</p>
+      <div class="stats">
+        <div class="stat rv d1"><b data-count="3">0</b><span data-i18n="st1">Apartments</span></div>
+        <div class="stat rv d2"><b data-count="150">0</b><span data-i18n="st2">Meters to Sea</span></div>
+        <div class="stat rv d3"><b data-count="9.6">0</b><span data-i18n="st3">Guest Rating</span></div>
+      </div>
+    </div>
+    <div class="about-img rv d2">
+      <div class="ph has-img" data-slot="about" style="background-image:url('images/about.jpg')"></div>
+      <div class="float"><b data-i18n="fl_b">Est. with love</b><span data-i18n="fl_s">A family-run promise of Greek hospitality</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESIDENCES -->
+<section class="residences" id="residences">
+  <div class="res-head">
+    <div>
+      <div class="label rv" data-i18n="rs_label">The Residences</div>
+      <h2 class="rv" data-i18n="rs_h2">Choose your <em>blue horizon</em></h2>
+    </div>
+    <a class="btn-solid booking-link rv d2" style="background:var(--sea);color:#fff" href="#book" data-i18n="rs_avail">Check Availability</a>
+  </div>
+  <div class="res-grid">
+    <div class="card rv">
+      <div class="imgwrap"><div class="ph has-img" data-slot="apt1" style="background-image:url('images/apt-a.jpg')"></div></div>
+      <div class="card-body">
+        <h3 data-i18n="a_h3">Apartment A · Turquoise</h3>
+        <div class="meta"><span data-i18n="m_balc">Balcony</span><span data-i18n="m_sea">Sea View</span><span data-i18n="m_kitch">Full Kitchen</span></div>
+        <p data-i18n="a_p">Breakfast over the Euboean Gulf. Turquoise interiors, a sunlit balcony, and the sea filling every window.</p>
+        <a class="card-link booking-link" href="#book"><span data-i18n="card_book">Book this stay</span> <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.4"/></svg></a>
+      </div>
+    </div>
+    <div class="card rv d1">
+      <div class="imgwrap"><div class="ph has-img" data-slot="apt2" style="background-image:url('images/apt-b.jpg')"></div></div>
+      <div class="card-body">
+        <h3 data-i18n="b_h3">Apartment B · Aegean</h3>
+        <div class="meta"><span data-i18n="m_balc">Balcony</span><span data-i18n="m_sea">Sea View</span><span data-i18n="m_wash">Washer</span></div>
+        <p data-i18n="b_p">Bright, breezy and made for longer stays — airy teal living space, a full kitchen, and golden-hour views from the rail.</p>
+        <a class="card-link booking-link" href="#book"><span data-i18n="card_book">Book this stay</span> <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.4"/></svg></a>
+      </div>
+    </div>
+    <div class="card rv d2">
+      <div class="imgwrap"><div class="ph has-img" data-slot="apt3" style="background-image:url('images/apt-c.jpg')"></div></div>
+      <div class="card-body">
+        <h3 data-i18n="c_h3">Apartment C · Indigo</h3>
+        <div class="meta"><span data-i18n="m_balc">Balcony</span><span data-i18n="m_sea">Sea View</span><span data-i18n="m_kitch">Full Kitchen</span></div>
+        <p data-i18n="c_p">Deep-blue lounging and olive-grove light. The quiet one — sunsets from the balcony feel like a private show.</p>
+        <a class="card-link booking-link" href="#book"><span data-i18n="card_book">Book this stay</span> <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.4"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- AMENITIES -->
+  <div style="max-width:1240px;margin:90px auto 0">
+    <div class="label rv" data-i18n="am_label">Comforts</div>
+    <h2 class="rv" data-i18n="am_h2">Everything, <em>effortlessly</em></h2>
+  </div>
+  <div class="amen-grid">
+    <div class="amen rv"><span class="ico">🌊</span><h3 data-i18n="am1">Steps to the Sea</h3><p data-i18n="am1p">Sandy toes in minutes — the beach is practically your front yard.</p></div>
+    <div class="amen rv d1"><span class="ico">🍋</span><h3 data-i18n="am2">Full Kitchens</h3><p data-i18n="am2p">Cook with market-fresh finds or just make excellent morning coffee.</p></div>
+    <div class="amen rv d2"><span class="ico">📶</span><h3 data-i18n="am3">Fast Wi-Fi & AC</h3><p data-i18n="am3p">Cool rooms and quick connections, whether you're off-grid or online.</p></div>
+    <div class="amen rv d3"><span class="ico">🔑</span><h3 data-i18n="am4">Easy Self Check-in</h3><p data-i18n="am4p">Arrive on your own schedule — your key is always waiting.</p></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div style="max-width:1240px;margin:0 auto">
+    <div class="label rv" style="color:var(--gold)" data-i18n="ga_label">The Gallery</div>
+    <h2 class="rv" data-i18n="ga_h2">Moments in <em>Aegean light</em></h2>
+  </div>
+  <div class="gal-grid">
+    <div class="ph has-img g1 rv" data-slot="gal1" style="background-image:url('images/gal1.jpg')"></div>
+    <div class="ph has-img rv d1" data-slot="gal2" style="background-image:url('images/gal2.jpg')"></div>
+    <div class="ph has-img rv d2" data-slot="gal3" style="background-image:url('images/gal3.jpg')"></div>
+    <div class="ph has-img g4 rv d1" data-slot="gal4" style="background-image:url('images/gal4.jpg')"></div>
+    <div class="ph has-img rv d2" data-slot="gal5" style="background-image:url('images/gal5.jpg')"></div>
+    <div class="ph has-img g6 rv d3" data-slot="gal6" style="background-image:url('images/gal6.jpg')"></div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="location">
+    <div>
+      <div class="label rv" data-i18n="lo_label">Find Us</div>
+      <h2 class="rv" data-i18n="lo_h2">Amarynthos, <em>Evia</em></h2>
+      <div class="loc-list">
+        <div class="loc-item rv"><b data-i18n="lo1">The Beach</b><span data-i18n="lo1t">2 min walk</span></div>
+        <div class="loc-item rv d1"><b data-i18n="lo2">Tavernas & Cafés</b><span data-i18n="lo2t">5 min drive</span></div>
+        <div class="loc-item rv d2"><b data-i18n="lo3">Local Market</b><span data-i18n="lo3t">8 min walk</span></div>
+        <div class="loc-item rv d3"><b data-i18n="lo4">Port / Marina</b><span data-i18n="lo4t">10 min drive</span></div>
+      </div>
+    </div>
+    <div class="map-box rv d2" id="mapBox">
+      <!-- MAP: replace this placeholder with a Google Maps embed iframe when the link is available -->
+      <div class="map-placeholder">
+        <span class="pin">📍</span>
+        <p data-i18n="map_p">Map coming soon</p>
+        <a class="btn-solid maps-link" style="background:var(--sea-deep);color:#fff;font-size:11px" href="#" target="_blank" rel="noopener" data-i18n="map_a">Open in Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING CTA -->
+<section class="book" id="book">
+  <div class="book-bg" id="bookBg" data-slot="cta" data-img style="background-image:url('images/cta.jpg')"></div>
+  <div class="big-theta">Θ</div>
+  <div class="label rv" style="justify-content:center;color:var(--sky)" data-i18n="bk_label">Reserve</div>
+  <h2 class="rv" data-i18n="bk_h2">Your table by the sea <em>is waiting</em></h2>
+  <p class="rv d1" data-i18n="bk_p">Check live availability and secure your dates directly on Booking.com — best rates, instant confirmation.</p>
+  <a class="btn-solid booking-link rv d2" href="#" target="_blank" rel="noopener" style="font-size:13px;padding:18px 48px" data-i18n="bk_btn">Book on Booking.com →</a>
+  <p class="rv d3" style="font-size:12px;margin-top:26px;opacity:.7"><span data-i18n="bk_talk">Prefer to talk?</span> <a href="mailto:hello@thetadevelopment.gr" style="text-decoration:underline">hello@thetadevelopment.gr</a></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot">
+    <div>
+      <a class="logo" href="#top"><span class="mark">Θ</span><span class="logo-text">Theta Resorts<small>by Theta Development</small></span></a>
+      <p data-i18n="ft_p">Resort apartments in Amarynthos, Evia — designed for the art of summer.</p>
+    </div>
+    <div>
+      <h4 data-i18n="ft_ex">Explore</h4>
+      <ul><li><a href="#about" data-i18n="nav_about">About</a></li><li><a href="#residences" data-i18n="nav_res">Residences</a></li><li><a href="#gallery" data-i18n="nav_gal">Gallery</a></li><li><a href="#location" data-i18n="nav_loc">Location</a></li></ul>
+    </div>
+    <div>
+      <h4 data-i18n="ft_bk">Book</h4>
+      <ul><li><a class="booking-link" href="#book">Booking.com</a></li><li><a href="mailto:hello@thetadevelopment.gr" data-i18n="ft_email">Email Us</a></li></ul>
+    </div>
+    <div>
+      <h4 data-i18n="ft_ct">Contact</h4>
+      <ul><li><a href="mailto:hello@thetadevelopment.gr">hello@thetadevelopment.gr</a></li><li><a class="maps-link" href="#" data-i18n="ft_map">Find us on the map</a></li><li><a class="ig-link" href="#" target="_blank" rel="noopener">Instagram</a></li><li><a class="fb-link" href="#" target="_blank" rel="noopener">Facebook</a></li></ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span data-i18n="ft_c">© 2026 Theta Development. All rights reserved.</span>
+    <span data-i18n="ft_sun">Made under the Greek sun ☀</span>
+  </div>
+</footer>
+
+<script>
+/* ====== CONFIG — paste real links here when ready ====== */
+const BOOKING_URL = "";   // e.g. https://www.booking.com/hotel/gr/theta-development.html
+const MAPS_URL    = "";   // e.g. https://maps.app.goo.gl/xxxx
+const MAPS_EMBED  = "";   // optional: Google Maps embed URL for the inline map
+const INSTAGRAM_URL = ""; // e.g. https://instagram.com/thetadevelopment
+const FACEBOOK_URL  = ""; // e.g. https://facebook.com/thetadevelopment
+
+/* apply links if set */
+if(BOOKING_URL){document.querySelectorAll('.booking-link').forEach(a=>{a.href=BOOKING_URL;a.target="_blank";a.rel="noopener";});}
+if(MAPS_URL){document.querySelectorAll('.maps-link').forEach(a=>{a.href=MAPS_URL;});}
+if(INSTAGRAM_URL){document.querySelectorAll('.ig-link').forEach(a=>a.href=INSTAGRAM_URL);}
+if(FACEBOOK_URL){document.querySelectorAll('.fb-link').forEach(a=>a.href=FACEBOOK_URL);}
+if(MAPS_EMBED){document.getElementById('mapBox').innerHTML='<iframe src="'+MAPS_EMBED+'" loading="lazy" allowfullscreen></iframe>';}
+
+/* ====== i18n ====== */
+const I18N = {
+en:{
+ nav_about:"About",nav_res:"Residences",nav_gal:"Gallery",nav_loc:"Location",nav_book:"Book Now",
+ kicker:"Resort Apartments · Amarynthos, Evia",
+ h1a:"Quiet hills, olive groves,",h1b:"and the endless blue",
+ hero_p:"Tucked into the olive groves above the Euboean Gulf — private, peaceful apartments where the only sounds are the cicadas and the sea.",
+ cta_book:"Book Your Stay",cta_explore:"Explore Residences",scroll:"Scroll",
+ ab_label:"The Theta Story",ab_h2:"Crafted for the <em>art of summer</em>",
+ ab_lead:"Theta Development builds and hosts resort apartments where Greek light, honest materials, and effortless comfort meet.",
+ ab_body:"Every residence is designed around the rhythm of the Mediterranean day — bright interiors that stay cool at noon, balconies that catch the evening gold, and beds you'll want to stay in until the smell of coffee wins. Whether you're here for a weekend or the whole season, you arrive as a guest and leave as a regular.",
+ st1:"Apartments",st2:"Meters to Sea",st3:"Guest Rating",
+ fl_b:"Est. with love",fl_s:"A family-run promise of Greek hospitality",
+ rs_label:"The Residences",rs_h2:"Choose your <em>blue horizon</em>",rs_avail:"Check Availability",
+ a_h3:"Apartment A · Turquoise",a_p:"Breakfast over the Euboean Gulf. Turquoise interiors, a sunlit balcony, and the sea filling every window.",
+ b_h3:"Apartment B · Aegean",b_p:"Bright, breezy and made for longer stays — airy teal living space, a full kitchen, and golden-hour views from the rail.",
+ c_h3:"Apartment C · Indigo",c_p:"Deep-blue lounging and olive-grove light. The quiet one — sunsets from the balcony feel like a private show.",
+ m_balc:"Balcony",m_sea:"Sea View",m_kitch:"Full Kitchen",m_wash:"Washer",card_book:"Book this stay",
+ am_label:"Comforts",am_h2:"Everything, <em>effortlessly</em>",
+ am1:"Steps to the Sea",am1p:"Sandy toes in minutes — the beach is practically your front yard.",
+ am2:"Full Kitchens",am2p:"Cook with market-fresh finds or just make excellent morning coffee.",
+ am3:"Fast Wi-Fi & AC",am3p:"Cool rooms and quick connections, whether you're off-grid or online.",
+ am4:"Easy Self Check-in",am4p:"Arrive on your own schedule — your key is always waiting.",
+ ga_label:"The Gallery",ga_h2:"Moments in <em>Aegean light</em>",
+ lo_label:"Find Us",lo_h2:"Amarynthos, <em>Evia</em>",
+ lo1:"The Beach",lo1t:"2 min walk",lo2:"Tavernas & Cafés",lo2t:"5 min drive",lo3:"Local Market",lo3t:"8 min walk",lo4:"Port / Marina",lo4t:"10 min drive",
+ map_p:"Map coming soon",map_a:"Open in Google Maps",
+ bk_label:"Reserve",bk_h2:"Your table by the sea <em>is waiting</em>",
+ bk_p:"Check live availability and secure your dates directly on Booking.com — best rates, instant confirmation.",
+ bk_btn:"Book on Booking.com →",bk_talk:"Prefer to talk?",
+ ft_p:"Resort apartments in Amarynthos, Evia — designed for the art of summer.",
+ ft_ex:"Explore",ft_bk:"Book",ft_ct:"Contact",ft_email:"Email Us",ft_map:"Find us on the map",
+ ft_c:"© 2026 Theta Development. All rights reserved.",ft_sun:"Made under the Greek sun ☀",
+ title:"Theta Resorts — Resort Apartments in Amarynthos, Evia"
+},
+el:{
+ nav_about:"Σχετικά",nav_res:"Διαμερίσματα",nav_gal:"Γκαλερί",nav_loc:"Τοποθεσία",nav_book:"Κράτηση",
+ kicker:"Διαμερίσματα Διακοπών · Αμάρυνθος, Εύβοια",
+ h1a:"Ήσυχοι λόφοι, ελαιώνες,",h1b:"και το απέραντο γαλάζιο",
+ hero_p:"Κρυμμένα στους ελαιώνες πάνω από τον Ευβοϊκό — ήσυχα, ιδιωτικά διαμερίσματα όπου ακούγονται μόνο τα τζιτζίκια και η θάλασσα.",
+ cta_book:"Κάντε Κράτηση",cta_explore:"Δείτε τα Διαμερίσματα",scroll:"Κύλιση",
+ ab_label:"Η Ιστορία της Theta",ab_h2:"Φτιαγμένο για την <em>τέχνη του καλοκαιριού</em>",
+ ab_lead:"Η Theta Development χτίζει και φιλοξενεί διαμερίσματα διακοπών όπου συναντιούνται το ελληνικό φως, τα αυθεντικά υλικά και η άνεση.",
+ ab_body:"Κάθε κατοικία είναι σχεδιασμένη γύρω από τον ρυθμό της μεσογειακής μέρας — φωτεινοί χώροι που μένουν δροσεροί το μεσημέρι, μπαλκόνια που πιάνουν το χρυσό φως του δειλινού, και κρεβάτια που δεν θα θέλετε να αφήσετε μέχρι να νικήσει η μυρωδιά του καφέ. Είτε για ένα Σαββατοκύριακο είτε για όλη τη σεζόν, έρχεστε ως επισκέπτες και φεύγετε ως δικοί μας άνθρωποι.",
+ st1:"Διαμερίσματα",st2:"Μέτρα από τη Θάλασσα",st3:"Βαθμολογία Επισκεπτών",
+ fl_b:"Φτιαγμένο με αγάπη",fl_s:"Μια οικογενειακή υπόσχεση ελληνικής φιλοξενίας",
+ rs_label:"Τα Διαμερίσματα",rs_h2:"Διαλέξτε τον δικό σας <em>γαλάζιο ορίζοντα</em>",rs_avail:"Δείτε Διαθεσιμότητα",
+ a_h3:"Διαμέρισμα A · Τιρκουάζ",a_p:"Πρωινό πάνω από τον Ευβοϊκό. Τιρκουάζ εσωτερικά, ηλιόλουστο μπαλκόνι και η θάλασσα να γεμίζει κάθε παράθυρο.",
+ b_h3:"Διαμέρισμα B · Αιγαίο",b_p:"Φωτεινό, δροσερό και ιδανικό για μεγαλύτερες διαμονές — άνετο σαλόνι, πλήρης κουζίνα και θέα στο χρυσό φως του απογεύματος.",
+ c_h3:"Διαμέρισμα C · Ίντιγκο",c_p:"Βαθύ μπλε καθιστικό και φως ελαιώνα. Το πιο ήσυχο — τα ηλιοβασιλέματα από το μπαλκόνι μοιάζουν με ιδιωτική παράσταση.",
+ m_balc:"Μπαλκόνι",m_sea:"Θέα Θάλασσα",m_kitch:"Πλήρης Κουζίνα",m_wash:"Πλυντήριο",card_book:"Κράτηση εδώ",
+ am_label:"Ανέσεις",am_h2:"Όλα, <em>χωρίς κόπο</em>",
+ am1:"Δύο Βήματα από τη Θάλασσα",am1p:"Πόδια στην άμμο σε λίγα λεπτά — η παραλία είναι σχεδόν η αυλή σας.",
+ am2:"Πλήρεις Κουζίνες",am2p:"Μαγειρέψτε με φρέσκα υλικά της αγοράς ή απλώς φτιάξτε υπέροχο πρωινό καφέ.",
+ am3:"Γρήγορο Wi-Fi & Κλιματισμός",am3p:"Δροσερά δωμάτια και γρήγορη σύνδεση, είτε ξεκουράζεστε είτε δουλεύετε.",
+ am4:"Εύκολο Self Check-in",am4p:"Φτάστε όποτε σας βολεύει — το κλειδί σας σας περιμένει πάντα.",
+ ga_label:"Η Γκαλερί",ga_h2:"Στιγμές στο <em>φως του Αιγαίου</em>",
+ lo_label:"Βρείτε μας",lo_h2:"Αμάρυνθος, <em>Εύβοια</em>",
+ lo1:"Η Παραλία",lo1t:"2 λεπτά με τα πόδια",lo2:"Ταβέρνες & Καφέ",lo2t:"5 λεπτά με το αυτοκίνητο",lo3:"Τοπική Αγορά",lo3t:"8 λεπτά με τα πόδια",lo4:"Λιμάνι / Μαρίνα",lo4t:"10 λεπτά με το αυτοκίνητο",
+ map_p:"Ο χάρτης έρχεται σύντομα",map_a:"Άνοιγμα στο Google Maps",
+ bk_label:"Κράτηση",bk_h2:"Το τραπέζι σας δίπλα στη θάλασσα <em>σας περιμένει</em>",
+ bk_p:"Δείτε διαθεσιμότητα και κλείστε τις ημερομηνίες σας απευθείας στη Booking.com — καλύτερες τιμές, άμεση επιβεβαίωση.",
+ bk_btn:"Κράτηση στη Booking.com →",bk_talk:"Προτιμάτε να μιλήσουμε;",
+ ft_p:"Διαμερίσματα διακοπών στην Αμάρυνθο της Εύβοιας — σχεδιασμένα για την τέχνη του καλοκαιριού.",
+ ft_ex:"Εξερεύνηση",ft_bk:"Κράτηση",ft_ct:"Επικοινωνία",ft_email:"Στείλτε μας Email",ft_map:"Βρείτε μας στον χάρτη",
+ ft_c:"© 2026 Theta Development. Με επιφύλαξη παντός δικαιώματος.",ft_sun:"Φτιαγμένο κάτω από τον ελληνικό ήλιο ☀",
+ title:"Theta Resorts — Διαμερίσματα Διακοπών στην Αμάρυνθο, Εύβοια"
+}};
+
+let lang = localStorage.getItem('theta-lang') || 'en';
+const langBtn = document.getElementById('langBtn');
+function applyLang(){
+  const d = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const v = d[el.dataset.i18n];
+    if(v!==undefined) el.innerHTML = v;
+  });
+  document.documentElement.lang = lang==='el' ? 'el' : 'en';
+  document.title = d.title;
+  langBtn.textContent = lang==='el' ? 'EN' : 'ΕΛ';
+}
+langBtn.addEventListener('click',()=>{
+  lang = lang==='el' ? 'en' : 'el';
+  localStorage.setItem('theta-lang',lang);
+  applyLang();
+});
+
+/* preloader */
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),600));
+
+/* nav scroll state */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60),{passive:true});
+
+/* scroll reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* animated counters */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,end=parseFloat(el.dataset.count),dec=String(el.dataset.count).includes('.')?1:0,t0=performance.now();
+  (function tick(t){const p=Math.min((t-t0)/1600,1),v=end*(1-Math.pow(1-p,3));
+    el.textContent=v.toFixed(dec);if(p<1)requestAnimationFrame(tick);})(t0);
+}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* parallax hero + cta */
+const heroBg=document.getElementById('heroBg'),bookBg=document.getElementById('bookBg');
+addEventListener('scroll',()=>{
+  heroBg.style.transform='translateY('+scrollY*0.35+'px)';
+  const r=bookBg.parentElement.getBoundingClientRect();
+  if(r.top<innerHeight&&r.bottom>0)bookBg.style.transform='translateY('+(r.top*-0.15)+'px)';
+},{passive:true});
+
+/* apply saved language */
+applyLang();
+</script>
+</body>
+</html>
