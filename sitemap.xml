@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.thetaresorts.com/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thetaresorts.com/"/>
+    <xhtml:link rel="alternate" hreflang="el" href="https://www.thetaresorts.com/?lang=el"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thetaresorts.com/"/>
+    <image:image>
+      <image:loc>https://www.thetaresorts.com/images/hero.jpg</image:loc>
+      <image:title>Sea view from Theta Resorts, Amarynthos, Evia</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.thetaresorts.com/images/apt-a.jpg</image:loc>
+      <image:title>Apartment A Turquoise — sea view apartment with balcony</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.thetaresorts.com/images/apt-b.jpg</image:loc>
+      <image:title>Apartment B Aegean — apartment with full kitchen and sea view</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.thetaresorts.com/images/apt-c.jpg</image:loc>
+      <image:title>Apartment C Indigo — quiet apartment with olive grove views</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.thetaresorts.com/?lang=el</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thetaresorts.com/"/>
+    <xhtml:link rel="alternate" hreflang="el" href="https://www.thetaresorts.com/?lang=el"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thetaresorts.com/"/>
   </url>
 </urlset>
